@@ -1,0 +1,75 @@
+nav{
+  .brandName{
+    margin:0px;
+    cursor: pointer;
+  }
+}
+button, a[role=button]{
+  padding:5px 15px;
+  min-width: 120px;
+  width:auto;
+}
+blockquote.error{
+  border-left-color: red;
+}
+article{
+  margin-top: 10px;
+  padding: 10px;
+}
+.bookContainer{
+  margin-top:60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:10px;
+}
+
+.book{
+  margin: 10px 0 0 0;
+  padding: 10px;
+  border-radius: 5px;
+  width: 240px;
+  text-align: left;
+  cursor: pointer;
+  .title{
+    font-weight: bold;
+  }
+
+  .description, .releaseDate{
+    margin-top: 5px;
+  }
+}
+header, main{
+  padding: 10px 0 !important;
+
+}
+
+.loading{
+  text-align: center;
+}
+
+.bookDetails{
+  .authorSection{
+    .author{
+      margin-top: 10px;
+    }
+  }
+  .reviewSection{
+    .grid{
+      grid-template-columns: 51% 200px;
+      grid-column-gap: 0px;
+      .review,.reviewer{
+        padding:20px 20px 20px 0;
+        border-bottom: 1px dotted gray;
+      }
+    }
+  }
+  
+}
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+  gap:15px;
+  justify-content: center;
+}

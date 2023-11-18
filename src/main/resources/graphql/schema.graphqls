@@ -1,0 +1,51 @@
+
+type Author{
+    aid:ID!
+    name:String
+    email:String
+}
+
+type Publisher{
+    pid:ID!
+    name:String
+    city:String
+    state:String
+    country:String
+}
+
+type Review{
+    rid:Int
+    reviewerName:String
+    review:String
+    rating:Int
+}
+
+input ReviewInput{
+    reviewerName:String
+    review:String
+    rating:Int
+}
+
+
+type Book{
+    bid:ID!
+    title:String
+    description:String
+    releaseDate:String
+    publisher:Publisher
+    authors:[Author]
+    reviews:[Review]
+}
+
+type Query{
+    allAuthors:[Author]
+    allPublishers:[Publisher]
+    getPublisher(publisherId:Int):Publisher
+    allBooks:[Book]
+    getBook(bookId:String):Book
+
+}
+
+type Mutation{
+    addReview(bid:ID!,reviewInput:ReviewInput!):Book
+}
