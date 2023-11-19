@@ -1,5 +1,6 @@
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import ErrorMessage from "./ErrorMessage";
+import { GET_BOOKS } from "../graph-queries";
 
 export type Author = {
   aid: number;
@@ -34,17 +35,6 @@ export type Book = {
 type Result = {
   allBooks: Book[];
 };
-
-const GET_BOOKS = gql`
-  query GetAllBooks {
-    allBooks {
-      bid
-      title
-      description
-      releaseDate
-    }
-  }
-`;
 
 function BookList() {
   const { loading, error, data } = useQuery<Result>(GET_BOOKS);

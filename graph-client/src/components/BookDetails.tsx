@@ -1,45 +1,20 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Book } from "./BookList";
 import { useState } from "react";
 import AddReview from "./AddReview";
 import ErrorMessage from "./ErrorMessage";
-type Result = {
+import Reviews from "./Reviews";
+import { GET_BOOK } from "../graph-queries";
+export type GetBookResult = {
   getBook: Book;
 };
-export const GET_BOOK = gql`
-  query GetBookById($bookId: String) {
-    getBook(bookId: $bookId) {
-      bid
-      title
-      description
-      releaseDate
-      publisher {
-        pid
-        name
-        city
-        state
-        country
-      }
-      authors {
-        aid
-        name
-        email
-      }
-      reviews {
-        rid
-        reviewerName
-        review
-        rating
-      }
-    }
-  }
-`;
+
 export default function BookDetails() {
   const { bid } = useParams();
   const [showReviews, setShowReviews] = useState<boolean>(false);
   const [showAddReviewForm, setShowAddReviewForm] = useState<boolean>(false);
-  const { loading, error, data } = useQuery<Result>(GET_BOOK, {
+  const { loading, error, data } = useQuery<GetBookResult>(GET_BOOK, {
     variables: { bookId: bid },
   });
   const book = data === undefined ? undefined : data.getBook;
@@ -95,30 +70,7 @@ export default function BookDetails() {
             )}
           </div>
 
-          {showReviews && (
-            <section className="reviewSection">
-              <div style={{ fontWeight: "bold" }}>Reviews:</div>
-              {book.reviews && book.reviews.length > 0 ? (
-                book.reviews.map((review) => (
-                  <div className="grid">
-                    <div className="review">
-                      {review.review && (
-                        <div className="reviewContent">{review.review}</div>
-                      )}
-                    </div>
-                    <div className="reviewer">
-                      {review.reviewerName && (
-                        <div>Name: {review.reviewerName}</div>
-                      )}
-                      {review.rating && <div>Rating: {review.rating}</div>}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div>No reviews available.</div>
-              )}
-            </section>
-          )}
+          {showReviews && <Reviews />}
 
           {!showAddReviewForm && (
             <div className="buttonContainer">

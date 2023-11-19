@@ -1,36 +1,14 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { GET_BOOK } from "./BookDetails";
 import ErrorMessage from "./ErrorMessage";
+import { GET_BOOK } from "../graph-queries";
+import { ADD_REVIEW } from "../graph-mutations";
 
 type AddReviewInputs = {
   bid: string;
   setShowAddReviewForm: (showAddReviewForm: boolean) => void;
 };
 
-const ADD_REVIEW = gql`
-  mutation AddReview(
-    $bid: ID!
-    $reviewerName: String!
-    $review: String!
-    $rating: Int!
-  ) {
-    addReview(
-      bid: $bid
-      reviewInput: {
-        reviewerName: $reviewerName
-        review: $review
-        rating: $rating
-      }
-    ) {
-      reviews {
-        review
-        reviewerName
-        rating
-      }
-    }
-  }
-`;
 export default function AddReview(props: AddReviewInputs) {
   const { bid, setShowAddReviewForm } = props;
   const [addReview, { data, loading, error }] = useMutation(ADD_REVIEW, {
