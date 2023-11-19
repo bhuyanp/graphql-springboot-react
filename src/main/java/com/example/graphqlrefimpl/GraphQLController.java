@@ -31,7 +31,7 @@ public class GraphQLController {
 
     @GetMapping
     public String home(){
-        return "redirect:/index.html";
+        return "forward:/index.html";
     }
 
     @QueryMapping("allPublishers")
