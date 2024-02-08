@@ -1,6 +1,6 @@
 ### GraphQL with SpringBOOT and React JS
 
-This is a simple book store application to highlight the usage and potential advatages
+This is a simple book store application to highlight the usage and potential advantages
 of GraphQL over RESTApi. Let's go over page by page to see how different graph queries and mutations are 
 executed.
 
